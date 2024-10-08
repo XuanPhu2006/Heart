@@ -1,0 +1,186 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #073b4c; /* Màu nền tối cho trang */
+}
+
+.birthdayCard {
+    position: relative;
+    width: 250px;
+    height: 350px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: perspective(2500px);
+    transition: 1s;
+}
+
+.birthdayCard:hover {
+    transform: perspective(2500px) rotate(5deg); /* Hiệu ứng xoay */
+    box-shadow: inset 100px 20px 100px rgba(0,0,0,.2), 0 10px 100px rgba(0,0,0,0.5); /* Hiệu ứng đổ bóng */
+}
+
+.birthdayCard:hover .cardFront {
+    transform: rotateY(-160deg); /* Xoay mặt trước khi hover */
+}
+
+.birthdayCard:hover .happy {
+    visibility: hidden; /* Ẩn chữ "HAPPY" khi hover */
+}
+
+.cardFront {
+    position: relative;
+    background-color: #fff; /* Màu nền cho mặt trước */
+    width: 250px;
+    height: 350px;
+    overflow: hidden;
+    transform-origin: left;
+    box-shadow: inset 100px 20px 100px rgba(0,0,0,.2), 30px 0 50px rgba(0,0,0,0.4); /* Đổ bóng */
+    transition: .6s;
+}
+
+.happy {
+    font-family: Tahoma, sans-serif; /* Font chữ */
+    text-align: center;
+    margin: 30px; 
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); /* Gradient nền chữ */
+    padding: 10px; /* Thêm khoảng cách cho chữ */
+    border-radius: 10px; /* Bo tròn cho chữ */
+}
+
+.balloons {
+    position: absolute; /* Đặt bóng bay trong không gian tuyệt đối */
+}
+
+.balloonOne, .balloonTwo, .balloonThree, .balloonFour {
+    position: absolute;
+    width: 85px;
+    height: 95px;
+    border-radius: 50%; /* Hình tròn cho bóng bay */
+}
+
+.balloonOne {
+    background-color: rgba(239, 71, 111, 0.7);
+    left: -10px;
+    top: 50px;
+}
+
+.balloonTwo {
+    background-color: rgba(6, 214, 160, 0.7);
+    left: 50px;
+    top: 20px;
+}
+
+.balloonThree {
+    background-color: rgba(255, 209, 102, 0.7);
+    left: 110px;
+    top: 50px;
+}
+
+.balloonFour {
+    background-color: rgba(17, 138, 178, 0.7);
+    left: 170px;
+    top: 20px;
+}
+
+.balloonOne:before, .balloonTwo:before, .balloonThree:before, .balloonFour:before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 155px; /* Chiều dài dây bóng bay */
+    background-color: #ffd166; /* Màu dây bóng bay */
+    top: 95px;
+    left: 43px; /* Căn chỉnh dây bóng bay */
+}
+
+.balloonOne:after, .balloonTwo:after, .balloonThree:after, .balloonFour:after {
+    content: "";
+    position: absolute;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    top: 94px;
+    left: 37px; /* Căn chỉnh dây bóng bay */
+}
+
+.balloonOne:after {
+    border-bottom: 10px solid #ef476f; /* Màu bóng bay 1 */
+}
+
+.balloonTwo:after {
+    border-bottom: 10px solid #06d6a0; /* Màu bóng bay 2 */
+}
+
+.balloonThree:after {
+    border-bottom: 10px solid #ffd166; /* Màu bóng bay 3 */
+}
+
+.balloonFour:after {
+    border-bottom: 10px solid #118ab2; /* Màu bóng bay 4 */
+}
+
+.cardInside {
+    position: absolute;
+    background-color: #fff; /* Màu nền cho mặt trong */
+    width: 250px;
+    height: 350px;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    box-shadow: inset 100px 20px 100px rgba(0,0,0,0.2); /* Đổ bóng cho mặt trong */
+}
+
+p {
+    font-family: 'Brush Script MT', cursive; /* Font chữ cho đoạn văn */
+    margin: 40px; /* Khoảng cách cho đoạn văn */
+    color: #333; /* Màu chữ */
+}
+
+.name {
+    position: absolute;
+    left: 150px; /* Vị trí cho tên */
+    top: 200px;
+    color: #333; /* Màu chữ */
+}
+
+.back {
+    font-family: Tahoma, sans-serif; /* Font chữ cho mặt trong */
+    color: #333; /* Màu chữ */
+    text-align: center;
+    margin: 30px; 
+    outline-color: #333; /* Màu viền cho chữ */
+    outline-style: dotted; /* Kiểu viền cho chữ */
+}
+
+/* Media Queries cho Responsive */
+@media (max-width: 768px) {
+    .birthdayCard {
+        width: 80%; /* Thay đổi kích thước thiệp cho màn hình nhỏ hơn */
+        height: auto; /* Thay đổi chiều cao cho thiệp */
+    }
+
+    .happy {
+        font-size: 1.5em; /* Kích thước chữ nhỏ hơn cho màn hình nhỏ */
+    }
+
+    .balloonOne, .balloonTwo, .balloonThree, .balloonFour {
+        width: 70px; /* Giảm kích thước bóng bay cho màn hình nhỏ */
+        height: 80px; /* Giảm chiều cao bóng bay cho màn hình nhỏ */
+    }
+}
+
+@media (max-width: 480px) {
+    .birthdayCard {
+        width: 90%; /* Kích thước thiệp cho điện thoại */
+    }
+
+    .happy {
+        font-size: 1.2em; /* Kích thước chữ nhỏ hơn cho điện thoại */
+    }
+
+    .balloonOne, .balloonTwo, .balloonThree, .balloonFour {
+        width: 50px; /* Giảm kích thước bóng bay cho điện thoại */
+        height: 60px; /* Giảm chiều cao bóng bay cho điện thoại */
+    }
+}
